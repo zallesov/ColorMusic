@@ -46,7 +46,9 @@ byte BRIGHTNESS = 200;      // яркость по умолчанию (0 - 255)
 #else                           // Пины для других плат Arduino (по умолчанию)
 #define MLED_PIN 13             // пин светодиода режимов
 #define MLED_ON HIGH
-#define LED_PIN 12              // пин DI светодиодной ленты
+#define LED_PIN1 10              // пин DI светодиодной ленты
+#define LED_PIN2 11              // пин DI светодиодной ленты
+#define LED_PIN3 12              // пин DI светодиодной ленты
 #endif
 
 #define POT_GND A0              // пин земля для потенциометра
@@ -253,7 +255,9 @@ boolean running_flag[3], eeprom_flag;
 
 void setup() {
   Serial.begin(9600);
-  FastLED.addLeds<WS2811, LED_PIN, GRB>(leds, NUM_LEDS).setCorrection( TypicalLEDStrip );
+  FastLED.addLeds<WS2811, LED_PIN1, GRB>(leds, NUM_LEDS).setCorrection( TypicalLEDStrip );
+  FastLED.addLeds<WS2811, LED_PIN2, GRB>(leds, NUM_LEDS).setCorrection( TypicalLEDStrip );
+  FastLED.addLeds<WS2811, LED_PIN3, GRB>(leds, NUM_LEDS).setCorrection( TypicalLEDStrip );
   if (CURRENT_LIMIT > 0) FastLED.setMaxPowerInVoltsAndMilliamps(5, CURRENT_LIMIT);
   FastLED.setBrightness(BRIGHTNESS);
 
